@@ -54,6 +54,7 @@ class LinkedList{
             }
 
             this->length++;
+            return true;
         }
 
         bool prepend_node(int value){
@@ -68,6 +69,7 @@ class LinkedList{
             }
 
             this->length++;
+            return true;
         }
 
         bool insert_node(int index, int value){
@@ -91,7 +93,10 @@ class LinkedList{
                     new_node->next = previous->next;
                     previous->next = new_node;
                     this->length++;
+                    return true;
                 }
+
+                return false;
             }
         }
 
@@ -105,4 +110,17 @@ class LinkedList{
 
             cout << endl;
         }
+
 };
+
+int main(){
+    LinkedList* SLL = new LinkedList();
+    SLL->append_node(1);
+    SLL->append_node(2);
+    SLL->append_node(3);
+    SLL->insert_node(0,0);
+    SLL->prepend_node(-1);
+    SLL->prepend_node(-2);
+    SLL->prepend_node(-3);
+    SLL->print_list();
+}
