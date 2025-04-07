@@ -25,4 +25,8 @@ class LinkedList{
             this->tail = nullptr;
             this->length = 0;
         }
+
+        bool is_list_empty(){
+            return (this->length == 0);
+        }
 };
