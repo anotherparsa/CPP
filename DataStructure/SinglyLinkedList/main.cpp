@@ -42,6 +42,17 @@ class LinkedList{
             return this->length;
         }
 
+        void print_list(){
+            Node* temp = this->head;
+
+            while(temp != nullptr){
+                cout << temp->value << " ";
+                temp = temp->next;
+            }
+
+            cout << endl;
+        }
+
         bool append_node(int value){
             Node* new_node = new Node(value);
 
@@ -100,15 +111,33 @@ class LinkedList{
             }
         }
 
-        void print_list(){
-            Node* temp = this->head;
+        bool delete_last_node(){
+            if (this->is_list_empty()){
+                return false;
+            }else{
+                if (this->length == 1){
+                    Node* temp = this->head;
+                    this->head = nullptr;
+                    this->tail = nullptr;
+                    this->length--;
+                    delete temp;
+                }else{
+                    Node* temp = this->head;
+                    Node* previous = this->head;
 
-            while(temp != nullptr){
-                cout << temp->value << " ";
-                temp = temp->next;
+                    while(temp->next != nullptr){
+                        previous = temp;
+                        temp = temp->next;
+                    }
+
+                    previous->next = nullptr;
+                    this->tail = previous;
+                    this->length--;
+                    delete temp;
+                }
+
+                return false;
             }
-
-            cout << endl;
         }
 
 };
@@ -123,4 +152,11 @@ int main(){
     SLL->prepend_node(-2);
     SLL->prepend_node(-3);
     SLL->print_list();
+    SLL->append_node(22);
+    SLL->append_node(33);
+    SLL->print_list();
+    SLL->delete_last_node();
+    SLL->delete_last_node();
+    SLL->print_list();
+
 }
