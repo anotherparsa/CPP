@@ -121,7 +121,7 @@ class LinkedList{
             }
         }
 
-        bool delete_last_node_m1(){
+        bool delete_last_node(){
             if (this->is_list_empty()){
                 return false;
             }else{
@@ -147,33 +147,6 @@ class LinkedList{
             }
         }
 
-        bool delete_last_node_m2(){
-            if (this->is_list_empty()){
-                return false;
-            }else{
-
-
-                if (this->length == 1){
-                    Node* temp = this->head;
-                    this->head = nullptr;
-                    this->tail = nullptr;
-                    this->length--;
-                    delete temp;
-                }else{
-                    Node* temp = this->get_node_by_index(this->length - 1);
-                    Node* previous = this->get_node_by_index(this->length - 2);
-
-                    previous->next = nullptr;
-                    this->tail = previous;
-                    this->length--;
-                    delete temp;
-                }
-
-
-                return true;
-            }
-        }
-
         bool delete_first_node(){
             if(this->is_list_empty()){
                 return false;
@@ -193,6 +166,39 @@ class LinkedList{
             }
         }
 
+        bool delete_node(int index){
+            if(this->is_list_empty()){
+                return false;
+            }else{
+                if ((index < 0) && (index >= this->length)){
+                    return false;
+                }else{
+                    if (index == 0){
+                        this->delete_first_node();
+                    }else if (index == this->length - 1){
+                        this->delete_last_node();
+                    }else{
+                        Node* temp = this->head;
+                        if (this->length == 1){
+                            this->head = nullptr;
+                            this->tail = nullptr;
+                        }else{
+                            Node* previous = this->head;
+
+                            for (int i = 0 ; i < index ; i++){
+                                previous = temp;
+                                temp = temp->next;
+                            }
+
+                            previous->next = temp->next;
+                            delete temp;
+                            this->length--;
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
 };
 
 
@@ -209,13 +215,9 @@ int main(){
     SLL->append_node(22);
     SLL->append_node(33);
     SLL->print_list();
-    SLL->delete_last_node_m1();
-    SLL->delete_last_node_m1();
+    SLL->delete_last_node();
+    SLL->delete_last_node();
     SLL->print_list();
-    SLL->append_node(222);
-    SLL->append_node(333);
-    SLL->print_list();
-    SLL->delete_last_node_m2();
-    SLL->delete_last_node_m2();
+    SLL->delete_node(3);
     SLL->print_list();
 }
