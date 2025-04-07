@@ -29,4 +29,18 @@ class LinkedList{
         bool is_list_empty(){
             return (this->length == 0);
         }
+
+        bool append_node(int value){
+            Node* new_node = new Node(value);
+
+            if(this->is_list_empty()){
+                this->head = new_node;
+                this->tail = new_node;
+            }else{
+                this->tail->next = new_node;
+                this->tail = new_node;
+            }
+            
+            this->length++;
+        }
 };
