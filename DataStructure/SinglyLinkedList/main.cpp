@@ -115,14 +115,11 @@ class LinkedList{
             if (this->is_list_empty()){
                 return false;
             }else{
+                Node* temp = this->head;
                 if (this->length == 1){
-                    Node* temp = this->head;
                     this->head = nullptr;
                     this->tail = nullptr;
-                    this->length--;
-                    delete temp;
                 }else{
-                    Node* temp = this->head;
                     Node* previous = this->head;
 
                     while(temp->next != nullptr){
@@ -132,11 +129,11 @@ class LinkedList{
 
                     previous->next = nullptr;
                     this->tail = previous;
-                    this->length--;
-                    delete temp;
                 }
 
-                return false;
+                this->length--;
+                delete temp;
+                return true;
             }
         }
 
