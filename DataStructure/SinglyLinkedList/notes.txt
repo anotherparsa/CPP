@@ -1,0 +1,126 @@
+Linked list:
+A linked list is a linear data structure where elements are called nodes.
+unlike arrays where elements are stored contiguously in memory and is fixed size, Linked List's elements are stored in separate memory locations.
+each node is mainly made from two elements, a value and a pointer to the next node.
+Linked lists can shrink or grow as you want.
+
+an array is something like this:
+--------------------
+| 1 || 2 || 3 || 4 |
+--------------------
+value      1        2        3        4
+index      0        1        2        3
+address    100-103  104-107  108-111  1012-115
+
+but in linked list we have something like this:
+value    1        2        3        4      
+address  100-103  240-243  680-683  1048-1051
+----------------------------------------
+| * || * || * || * || 1 || * || * || * |
+----------------------------------------
+----------------------------------------
+| * || 2 || * || * || * || * || 3 || * |
+----------------------------------------
+----------------------------------------
+| * || * || * || 4 || * || * || * || * |
+----------------------------------------
+ A    B    C    D
+(1)  (2)  (3)  (4)
+(P)->(P)->(P)->(P)->Null
+
+A linked list has:
+a Head pointer variable which points to the first Node in the list
+a Tail pointer variable which points to the last Node in the list
+a length variable which keeps track of the number of the nodes in the linked list.
+
+methods:
+print_list:
+starts by traversing the list, beginning from the head and showing value and then going to the next element untill it reaches to the end of the list
+
+Appending a node:
+first you create a new_node, then you check to see if the linked list is empty or not.
+if it's empty, then both head and tail pointer variables will point to that new node.
+if it's not empty and you already have nodes in the linked list, the current tail node's next which is the last node in the list will point to the new_node.
+and then the tail pointer variable will point to the new_node and like this the new_node will become the new tail of the list.
+
+Prepending a node:
+first you create a new_node, then you check to see if the linked list is empty or not.
+if it's empty, then both head and tail pointer variables will point to that new node.
+if it's not empty, the new_node's next will point to the current head of the list, which is the first node.
+and then the head pointer variable will point to the new_node and like this the new_node will become the new head of the list.
+
+deleting last node:
+there are 3 cases: the list is empty, the list only has one node, the list has more than one node.
+first you check if the linked list is empty or not.
+if it's not empty and has only one node, both head and tail pointer variable of the linked list will point to null.
+and then the node will be deleted.
+if there are more than one node, you get the last and one before last node in the list.
+the previous node will point to null because there isn't going to be another node to point to.
+this way the current tail node of the list will be separated from the list.
+then the tail pointer variable will point to the previous node and like this the last tail node will be completly separated from list.
+then you can delete that node.
+
+deleting first node:
+there are 3 cases: the list is empty, the list only has one node, the list has more than one node.
+first you check if the linked list is empty or not.
+if it's not empty and has only one node, both head and tail pointer variables of the linked list will point to null.
+and then the node will be deleted.
+if there are more than one node, the head will point to the current head's next node, which is the second node.
+this way the first node is separated from the list and you can delete it.
+
+insert a node:
+first you check if the linked list is empty or not.
+if it's not empty then you check to validate the index which the new_node will be inserted at.
+the index must be 0 >= index and index <= length.
+if the index is 0 that means prepend a node and index is the length that means append a node.
+if index is between these two, you need to get the node before the node which already exist on that position.
+the new_node is going to be placed between these two nodes. so the new_node will point to the previous's next node which is
+the node that already is in that position and then previous node will point to the new_node.
+
+delete a node:
+first you check if the linked list is empty or not.
+if it's not empty then you check to validate the index which is the poisition of the node you want to delete.
+the index must be 0 >= index and index < length.
+if the index is 0 that means delete first node and if the index is lenght - 1 that means delete last node.
+if index is between these two, we need to get the node that is in that index and the node before it.
+the previous node will point to the next node after then node in that index and like this the node in that poisition is separated from list.
+then you can delete the node itself.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

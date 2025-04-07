@@ -54,70 +54,88 @@ class LinkedList{
         }
 
         Node* get_node_by_index(int index){
-            Node* temp = this->head;
+            if(this->is_list_empty()){
+                return nullptr;
+            }else if ((index < 0 ) || (index >= this->length)){
+                return nullptr;
+            }else{
+                Node* temp = this->head;
 
-            for (int i = 0 ; i < index ; i++){
-                temp = temp->next;
+                for (int i = 0 ; i < index ; i++){
+                    temp = temp->next;
+                }
+    
+                return temp;
             }
-
-            return temp;
         }
 
         bool append_node(int value){
             Node* new_node = new Node(value);
 
-            if(this->is_list_empty()){
-                this->head = new_node;
-                this->tail = new_node;
+            if(new_node != nullptr){
+                if(this->is_list_empty()){
+                    this->head = new_node;
+                    this->tail = new_node;
+                }else{
+                    this->tail->next = new_node;
+                    this->tail = new_node;
+                }
+    
+                this->length++;
+                return true;
             }else{
-                this->tail->next = new_node;
-                this->tail = new_node;
+                return false;
             }
-
-            this->length++;
-            return true;
         }
 
         bool prepend_node(int value){
             Node* new_node = new Node(value);
 
-            if(this->is_list_empty()){
-                this->head = new_node;
-                this->tail = new_node;
+            if(new_node != nullptr){
+                if(this->is_list_empty()){
+                    this->head = new_node;
+                    this->tail = new_node;
+                }else{
+                    new_node->next = this->head;
+                    this->head = new_node;
+                }
+    
+                this->length++;
+                return true;
             }else{
-                new_node->next = this->head;
-                this->head = new_node;
+                return false;
             }
 
-            this->length++;
-            return true;
         }
 
         bool insert_node(int index, int value){
-            if(this->is_list_empty()){
-                return false;
-            }else if ((index <= 0 ) && (index > this->length)){
+            if ((index < 0 ) || (index > this->length)){
                 return false;
             }else{
                 if (index == 0){
                     this->prepend_node(value);
+                    return true;
                 }else if (index == this->length){
                     this->append_node(value);
+                    return true;
                 }else{
                     Node* new_node = new Node(value);
-                    Node* previous = this->head;
+                    
+                    if(new_node != nullptr){
+                        Node* previous = this->head;
 
-                    for (int i = 0 ; i < index - 1 ; i++){
-                        previous = previous->next;
+                        for (int i = 0 ; i < index - 1 ; i++){
+                            previous = previous->next;
+                        }
+    
+                        new_node->next = previous->next;
+                        previous->next = new_node;
+                        this->length++;
+                        return true;
+                    }else{
+                        return false;
                     }
-
-                    new_node->next = previous->next;
-                    previous->next = new_node;
-                    this->length++;
-                    return true;
                 }
-
-                return false;
             }
         }
 
@@ -130,7 +148,7 @@ class LinkedList{
                     this->head = nullptr;
                     this->tail = nullptr;
                 }else{
-                    Node* previous = this->head;
+                    Node* previous = nullptr;
 
                     while(temp->next != nullptr){
                         previous = temp;
@@ -141,8 +159,8 @@ class LinkedList{
                     this->tail = previous;
                 }
 
-                this->length--;
                 delete temp;
+                this->length--;
                 return true;
             }
         }
@@ -170,19 +188,17 @@ class LinkedList{
             if(this->is_list_empty()){
                 return false;
             }else{
-                if ((index < 0) && (index >= this->length)){
+                if ((index < 0) || (index >= this->length)){
                     return false;
                 }else{
                     if (index == 0){
                         this->delete_first_node();
+                        return true;
                     }else if (index == this->length - 1){
                         this->delete_last_node();
+                        return true;
                     }else{
                         Node* temp = this->head;
-                        if (this->length == 1){
-                            this->head = nullptr;
-                            this->tail = nullptr;
-                        }else{
                             Node* previous = this->head;
 
                             for (int i = 0 ; i < index ; i++){
@@ -193,8 +209,7 @@ class LinkedList{
                             previous->next = temp->next;
                             delete temp;
                             this->length--;
-                            return false;
-                        }
+                            return true;
                     }
                 }
             }
