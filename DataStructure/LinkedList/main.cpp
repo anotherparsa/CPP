@@ -37,7 +37,11 @@ class LinkedList{
         Node* return_tail(){
             return this->tail;
         }
-        
+
+        int return_length(){
+            return this->length;
+        }
+
         bool append_node(int value){
             Node* new_node = new Node(value);
 
