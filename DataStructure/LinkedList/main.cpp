@@ -30,6 +30,10 @@ class LinkedList{
             return (this->length == 0);
         }
 
+        Node* return_head(){
+            return this->head;
+        }
+
         bool append_node(int value){
             Node* new_node = new Node(value);
 
