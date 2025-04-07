@@ -83,13 +83,26 @@ class LinkedList{
                 }else{
                     Node* new_node = new Node(value);
                     Node* previous = this->head;
+
                     for (int i = 0 ; i < index - 1 ; i++){
                         previous = previous->next;
                     }
+
                     new_node->next = previous->next;
                     previous->next = new_node;
                     this->length++;
                 }
             }
+        }
+
+        void print_list(){
+            Node* temp = this->head;
+
+            while(temp != nullptr){
+                cout << temp->value << " ";
+                temp = temp->next;
+            }
+
+            cout << endl;
         }
 };
