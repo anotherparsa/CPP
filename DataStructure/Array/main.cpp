@@ -9,7 +9,13 @@ int main(){
     int arr1[5];
     int sizearray = (sizeof(arr1) / sizeof(int));
     show_array(arr1, sizearray);
-    //initialized array
+
+    //initializing array
+    arr1[0] = 10;
+    arr1[1] = 20;
+    sizearray = (sizeof(arr1) / sizeof(int));
+    show_array(arr1, sizearray);
+    // pre initialized array
     int arr2[] = {1, 2, 3, 4, 5};
     sizearray = (sizeof(arr1) / sizeof(int));
     show_array(arr2, sizearray);
