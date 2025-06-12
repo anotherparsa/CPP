@@ -14,7 +14,14 @@ class Node{
 };
 
 class Stack{
-
+    private:
+        Node* top;
+        int height;
+    public:
+        Stack(){
+            this->top = nullptr;
+            this->height = 0;
+        }
 };
 
 int main(){
