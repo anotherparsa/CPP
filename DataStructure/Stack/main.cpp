@@ -23,21 +23,38 @@ class Stack{
             this->height = 0;
         }
 
-        bool is_stack_empty(){
-            return this->height == 0;
-        }
-
         void print_stack(){
             Node* temp = this->top;
             cout << "Stack Items" << endl;
             while (temp != nullptr){
                 cout << temp->value << endl;
+                temp = temp->next;
             }
+            cout << "Height : " << this->height << endl;
+        }
+
+        void push_node(int value){
+            Node* new_node = new Node(value);
+            if (this->height == 0){
+                this->top = new_node;
+            }else{
+                new_node->next = this->top;
+                this->top = new_node;
+            }
+            this->height++;
         }
 
         
 };
 
 int main(){
+
+    Stack* mystack = new Stack();
+    mystack->print_stack();
+    mystack->push_node(1);
+    mystack->push_node(2);
+    mystack->push_node(3);
+    mystack->push_node(4);
+    mystack->print_stack();
 
 }
