@@ -22,6 +22,10 @@ class Stack{
             this->top = nullptr;
             this->height = 0;
         }
+
+        bool is_stack_empty(){
+            return this->height == 0;
+        }
 };
 
 int main(){
