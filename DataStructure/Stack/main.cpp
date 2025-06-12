@@ -26,6 +26,16 @@ class Stack{
         bool is_stack_empty(){
             return this->height == 0;
         }
+
+        void print_stack(){
+            Node* temp = this->top;
+            cout << "Stack Items" << endl;
+            while (temp != nullptr){
+                cout << temp->value << endl;
+            }
+        }
+
+        
 };
 
 int main(){
