@@ -1,4 +1,5 @@
 #include <iostream>
+#include <climits>
 
 using namespace std;
 
@@ -35,13 +36,21 @@ class Stack{
 
         void push_node(int value){
             Node* new_node = new Node(value);
-            if (this->height == 0){
-                this->top = new_node;
-            }else{
-                new_node->next = this->top;
-                this->top = new_node;
-            }
+            new_node->next = this->top;
+            this->top = new_node;
             this->height++;
+        }
+
+        int pop_node(){
+            if (this->top == 0){
+                return INT_MIN;
+            }
+            int popped_value = this->top->value;
+            Node* temp = this->top;
+            this->top = this->top->next;
+            delete temp;
+            this->height--;
+            return popped_value;
         }
 
         
@@ -56,5 +65,15 @@ int main(){
     mystack->push_node(3);
     mystack->push_node(4);
     mystack->print_stack();
+    cout << "Popped value " << mystack->pop_node() << endl;
+    cout << "Popped value" << mystack->pop_node() << endl;
+    mystack->print_stack();
+    cout << "Popped value " << mystack->pop_node() << endl;
+    cout << "Popped value" << mystack->pop_node() << endl;
+    cout << "Popped value " << mystack->pop_node() << endl;
+    mystack->print_stack();
+    cout << "Popped value" << mystack->pop_node() << endl;
+    mystack->print_stack();
+
 
 }
